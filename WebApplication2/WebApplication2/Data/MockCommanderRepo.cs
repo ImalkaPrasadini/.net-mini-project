@@ -4,6 +4,11 @@ namespace WebApplication2.Data
 {
     public class MockCommanderRepo : ICommanderRepo
     {
+        public void CreateCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Command> GetAppCommands()
         {
             var commands = new List<Command>
@@ -21,6 +26,10 @@ namespace WebApplication2.Data
             return new Command { Id = 0, HowTo = "1st", Line = "1st line", Platform = "1st platform" };
         }
 
+        public bool saveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

@@ -50,6 +50,16 @@ namespace WebApplication2.Controllers
             return NotFound();
         }
 
+        [HttpPost]
+        public ActionResult <CommandReadDto> CreateCommand(CommandCreateDto commandCreateDto)
+        {
+            var commandModel = _mapper.Map<Command>(commandCreateDto);
+            _commanderRepo.CreateCommand(commandModel);
+            _commanderRepo.saveChanges();
+
+            return Ok(commandModel);
+        }
+
 
 
     }

@@ -8,7 +8,9 @@ namespace WebApplication2.Profiles
     {
         public CommandsProfile() 
         {
+            //source -> target
             CreateMap<Command, CommandReadDto>();
+            CreateMap<CommandCreateDto, Command>();
         }
     }
 }

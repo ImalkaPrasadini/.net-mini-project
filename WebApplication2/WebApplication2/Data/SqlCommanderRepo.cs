@@ -10,6 +10,16 @@ namespace WebApplication2.Data
         { 
           _context = context;
         }
+
+        public void CreateCommand(Command cmd)
+        {
+            if (cmd == null) 
+            { 
+             throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
+        }
+
         public IEnumerable<Command> GetAppCommands()
         {
             return _context.Commands.ToList();
@@ -18,6 +28,11 @@ namespace WebApplication2.Data
         public Command GetCommandById(int id)
         {
             return _context.Commands.FirstOrDefault(p => p.Id == id);
+        }
+
+        public bool saveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
