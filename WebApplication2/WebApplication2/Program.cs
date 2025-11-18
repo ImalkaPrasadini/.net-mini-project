@@ -1,0 +1,41 @@
+using Microsoft.EntityFrameworkCore;
+using WebApplication2.Data;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+//builder.Services.AddDbContext<CommanderContext>(options => options.UseSqlServer
+//    (Configuration.GetConntectionString("CommanderConnection")));
+builder.Services.AddDbContext<CommanderContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CommanderConnection")));
+
+
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//builder.Services.AddScoped<ICommanderRepo, MockCommanderRepo>();
+builder.Services.AddScoped<ICommanderRepo, SqlCommanderRepo>();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
