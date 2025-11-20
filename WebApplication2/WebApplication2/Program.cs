@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 using WebApplication2.Data;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,10 @@ builder.Services.AddDbContext<CommanderContext>(options =>
 
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
