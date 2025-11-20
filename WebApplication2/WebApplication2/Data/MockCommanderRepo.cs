@@ -9,6 +9,11 @@ namespace WebApplication2.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteCommand(Command cmd)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Command> GetAppCommands()
         {
             var commands = new List<Command>
@@ -27,6 +32,11 @@ namespace WebApplication2.Data
         }
 
         public bool saveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateCommand(Command cmd)
         {
             throw new NotImplementedException();
         }
